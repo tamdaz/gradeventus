@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Cours - " ~ course.name %}
+
+{% block body %}
+    {{ component('CourseComponent', {
+        id: course.id,
+        is_card: false,
+        name: course.name,
+        professor: course.professor,
+        color: course.backgroundColor,
+    }) }}
+    {{ component('NoteTableComponent', { id: course.id }) }}
+{% endblock %}

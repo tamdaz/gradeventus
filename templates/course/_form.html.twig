@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Créer un cours" %}
+
+{% block body %}
+    <h1>Créer un cours</h1>
+    <div>
+        {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                {{ form_row(form.name) }}
+                {{ form_row(form.professor) }}
+            </div>
+            {{ form_row(form.color) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

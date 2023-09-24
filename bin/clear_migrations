@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+cd ..
+nb_files=$(find migrations/ | wc -l)
+
+function step {
+    echo "==> $1"
+}
+
+if [[ $nb_files -ge 1 ]]; then
+    step "Suppression des migrations"
+    rm -rf migrations/*
+    bin/console doctrine:migrations:dump-schema
+    bin/console doctrine:schema:drop --force
+    step "Migrations supprimées avec succès, migrer vers la version indiquée au dessus du message généré par Symfony"
+fi

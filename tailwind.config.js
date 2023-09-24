@@ -1,0 +1,46 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: [
+        "./assets/**/*.js",
+        "./templates/**/*.html.twig",
+    ],
+    safelist: [
+        "bg-gradient-to-r",
+        "from-gray-200",
+        "from-pink-200",
+        "from-rose-200",
+        "from-red-200",
+        "from-orange-200",
+        "from-yellow-200",
+        "from-lime-200",
+        "from-green-200",
+        "from-emerald-200",
+        "from-teal-200",
+        "from-cyan-200",
+        "from-sky-200",
+        "from-blue-200",
+        "from-indigo-200",
+        "from-purple-200",
+        "from-fuchsia-200",
+        "to-gray-50",
+        "to-pink-50",
+        "to-rose-50",
+        "to-red-50",
+        "to-orange-50",
+        "to-yellow-50",
+        "to-lime-50",
+        "to-green-50",
+        "to-emerald-50",
+        "to-teal-50",
+        "to-cyan-50",
+        "to-sky-50",
+        "to-blue-50",
+        "to-indigo-50",
+        "to-purple-50",
+        "to-fuchsia-50"
+    ],
+    theme: {
+        extend: {},
+    },
+    plugins: []
+}
