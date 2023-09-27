@@ -3,6 +3,9 @@
 {% block title "Cours - " ~ course.name %}
 
 {% block body %}
+    <a href="{{ path('app.course.index') }}" class="block mb-2 text-4xl font-bold hover:opacity-80 active:opacity-60">
+        <- Retour à l'accueil
+    </a>
     {{ component('CourseComponent', {
         id: course.id,
         is_card: false,

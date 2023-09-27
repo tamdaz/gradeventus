@@ -13,12 +13,12 @@
     </div>
     {% if is_card == true %}
         <div class="w-full bg-white grid grid-cols-2 bottom-0">
-            <button class="btn-info" onclick="window.location.href = '{{ path('app.course.show', { id: id }) }}';">
+            <a class="btn-info" href="{{ path('app.course.show', { id: id }) }}">
                 Voir les notes
-            </button>
-            <button class="btn-danger" onclick="window.location.href = '{{ path('app.course.delete', { id: id }) }}';">
+            </a>
+            <a class="btn-danger" href="{{ path('app.course.delete', { id: id }) }}">
                 Supprimer ce cours
-            </button>
+            </a>
         </div>
     {% endif %}
 </div>

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Ensemble de cours</h1>
-    <button onclick="window.location.href = '{{ path('app.course.new') }}'; " class="mb-4 btn">Créer un cours</button>
+    <a href="{{ path('app.course.new') }}" class="block mt-2 mb-4 btn">Créer un cours</a>
     <div class="grid grid-cols-2 gap-4">
         {% for course in courses %}
             {{ component('CourseComponent', {
@@ -12,8 +12,9 @@
                 name: course.name,
                 average: course.average,
                 professor: course.professor,
-                color: course.backgroundColor,
+                color: course.backgroundColor
             }) }}
         {% endfor %}
     </div>
+    {{ knp_pagination_render(courses) }}
 {% endblock %}
