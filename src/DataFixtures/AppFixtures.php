@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
         foreach (CourseColor::cases() as $color) {
             $course = new Course();
             $course
-                ->setName($color->name)
+                ->setName(ucfirst(strtolower($color->value)))
                 ->setColor($color)
                 ->setProfessor("M. Durand");
 
@@ -23,7 +23,6 @@ class AppFixtures extends Fixture
                 $note->setNote(rand(0, 20));
 
                 $manager->persist($note);
-
                 $course->addNote($note);
             }
 
