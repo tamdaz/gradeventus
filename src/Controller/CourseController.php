@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Course;
 use App\Form\CourseType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -16,12 +18,18 @@ class CourseController extends AbstractController
     ) {}
 
     #[Route('/', name: 'app.course.index')]
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $courses = $this->entityManager->getRepository(Course::class);
 
+        $pagination = $paginator->paginate(
+            $courses->findAll(),
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('course/index.html.twig', [
-            'courses' => $courses->findAll()
+            'courses' => $pagination
         ]);
     }
 
@@ -36,6 +44,9 @@ class CourseController extends AbstractController
 
             $this->entityManager->persist($course);
             $this->entityManager->flush();
+
+            $cache = new FilesystemAdapter();
+            $cache->delete('courses_cache');
 
             return $this->redirectToRoute('app.course.index');
         }
