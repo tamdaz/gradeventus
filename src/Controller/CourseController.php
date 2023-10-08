@@ -7,7 +7,6 @@ use App\Form\CourseType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -45,10 +44,7 @@ class CourseController extends AbstractController
             $this->entityManager->persist($course);
             $this->entityManager->flush();
 
-            $cache = new FilesystemAdapter();
-            $cache->delete('courses_cache');
-
-            return $this->redirectToRoute('app.course.index');
+            return $this->redirectToRoute('app.course.index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('course/_form.html.twig', [
@@ -75,6 +71,6 @@ class CourseController extends AbstractController
         $this->entityManager->remove($course);
         $this->entityManager->flush();
 
-        return $this->redirectToRoute('app.course.index');
+        return $this->redirectToRoute('app.course.index', [], Response::HTTP_SEE_OTHER);
     }
 }
