@@ -7,19 +7,23 @@ import { Controller } from '@hotwired/stimulus';
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static values = {
-        mode: String,
+        mode: String
     }
 
     initialize() {
         super.initialize();
 
-        switch (localStorage.getItem('theme')) {
-            case 'light':
-                document.documentElement.classList.remove('dark')
-                break
-            case 'dark':
-                document.documentElement.classList.add('dark')
-                break
+        if (!localStorage.getItem(('theme'))) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            switch (localStorage.getItem('theme')) {
+                case 'light':
+                    document.documentElement.classList.remove('dark')
+                    break
+                case 'dark':
+                    document.documentElement.classList.add('dark')
+                    break
+            }
         }
 
         document.querySelector('#theme').innerText = localStorage.getItem('theme');
