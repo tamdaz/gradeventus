@@ -15,7 +15,7 @@
     {{ form_end(form) }}
     <table class="w-full rounded-md table-fixed">
         <thead>
-            <tr class="[&>*]:border [&>*]:px-4 [&>*]:py-2">
+            <tr class="[&>*]:border [&>*]:dark:border-neutral-800 [&>*]:px-4 [&>*]:py-2">
                 <th>Note</th>
                 <th>Date d'ajout</th>
                 <th>Actions</th>
@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             {% for note in this.getNotes %}
-                <tr class="[&>*]:border">
+                <tr class="[&>*]:border [&>*]:dark:border-neutral-800">
                     <td class="px-4 py-2">{{ note.note }}</td>
                     <td class="px-4 py-2">{{ note.createdAt|ago }}</td>
                     <td class="px-0 py-0 bg-red-500 disabled:bg-neutral-500 hover:disabled:bg-neutral-500  hover:bg-red-600 text-white text-center cursor-pointer">
@@ -37,14 +37,14 @@
                     </td>
                 </tr>
             {% else %}
-                <tr class="[&>*]:border">
+                <tr class="[&>*]:border [&>*]:dark:border-neutral-800">
                     <td colspan="3" class="px-4 py-2 text-center">
                         Pas de notes ajoutées dans ce cours
                     </td>
                 </tr>
             {% endfor %}
             {% if this.getNotes is not empty %}
-                <tr class="[&>*]:border [&>*]:px-4 [&>*]:py-2 font-bold">
+                <tr class="[&>*]:border [&>*]:dark:border-neutral-800 [&>*]:px-4 [&>*]:py-2 font-bold">
                     <td>{{ this.getAverage }}</td>
                 </tr>
             {% endif %}
