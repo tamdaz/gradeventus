@@ -33,12 +33,24 @@ class CourseTest extends KernelTestCase
         $course = $this->createCourse()
             ->setName("Français")
             ->setProfessor("M. Machin")
+            ->setRoom("205")
             ->setColor(CourseColor::BLUE);
 
         $this->assertHasErrors($course, 0);
     }
 
     public function testCreateCourseWithNoProfessor(): void
+    {
+        $course = $this->createCourse()
+            ->setName("Français")
+            ->setProfessor("")
+            ->setRoom("205")
+            ->setColor(CourseColor::BLUE);
+
+        $this->assertHasErrors($course, 0);
+    }
+
+    public function testCreateCourseWithNoRoom(): void
     {
         $course = $this->createCourse()
             ->setName("Français")
@@ -53,6 +65,7 @@ class CourseTest extends KernelTestCase
         $course = $this->createCourse()
             ->setName("")
             ->setProfessor("M. Machin")
+            ->setRoom("205")
             ->setColor(CourseColor::BLUE);
 
         $this->assertHasErrors($course, 1);
@@ -62,6 +75,7 @@ class CourseTest extends KernelTestCase
     {
         $course = $this->createCourse()
             ->setName("Français")
+            ->setRoom("205")
             ->setProfessor("M. Machin");
 
         $this->assertHasErrors($course, 1);
@@ -72,6 +86,7 @@ class CourseTest extends KernelTestCase
         $course = $this->createCourse()
             ->setName("Français")
             ->setProfessor("M. abcdefghijklmnopqrstuvwxyz0123456789")
+            ->setRoom("205")
             ->setColor(CourseColor::BLUE);
 
         $this->assertHasErrors($course, 1);
@@ -82,6 +97,7 @@ class CourseTest extends KernelTestCase
         $course = $this->createCourse()
             ->setName("Français")
             ->setProfessor("M. Machin")
+            ->setRoom("205")
             ->setColor(CourseColor::BLUE);
 
         self::assertNotEmpty($course->getCreatedAt());
@@ -99,6 +115,7 @@ class CourseTest extends KernelTestCase
         self::assertArrayHasKey("id", $json);
         self::assertArrayHasKey("avg", $json);
         self::assertArrayHasKey("name", $json);
+        self::assertArrayHasKey("room", $json);
         self::assertArrayHasKey("color", $json);
         self::assertArrayHasKey("notes", $json);
         self::assertArrayHasKey("professor", $json);

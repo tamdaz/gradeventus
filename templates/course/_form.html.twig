@@ -3,15 +3,30 @@
 {% block title "Créer un cours" %}
 
 {% block body %}
-    <h1>Créer un cours</h1>
-    <div>
-        {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
-            <div class="grid grid-cols-2 gap-4 mb-4">
-                {{ form_row(form.name) }}
-                {{ form_row(form.professor) }}
+    <h1 class="mb-2">Créer un cours</h1>
+    {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+        <div>
+            <span class="block mb-2">{{ form_label(form.name) }}</span>
+            {{ form_widget(form.name) }}
+            <span class="text-red-500 block mt-3">{{ form_errors(form.name) }}</span>
+        </div>
+        <div class="grid grid-cols-2 gap-4 my-2">
+            <div>
+                <span class="block mb-2">{{ form_label(form.professor) }}</span>
+                {{ form_widget(form.professor) }}
+                <span class="text-red-500 block mt-3">{{ form_errors(form.professor) }}</span>
             </div>
-            {{ form_row(form.color) }}
-            {{ form_row(form.submit) }}
-        {{ form_end(form) }}
-    </div>
+            <div>
+                <span class="block mb-2">{{ form_label(form.room) }}</span>
+                {{ form_widget(form.room) }}
+                <span class="text-red-500 block mt-3">{{ form_errors(form.room) }}</span>
+            </div>
+        </div>
+        <div>
+            <span class="block mb-2">{{ form_label(form.color) }}</span>
+            {{ form_widget(form.color) }}
+            <span class="text-red-500 block mt-3">{{ form_errors(form.color) }}</span>
+        </div>
+        {{ form_row(form.submit, { attr: { class: 'btn w-full' }}) }}
+    {{ form_end(form) }}
 {% endblock %}

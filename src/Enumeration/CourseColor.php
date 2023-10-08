@@ -4,8 +4,6 @@ namespace App\Enumeration;
 
 enum CourseColor: string
 {
-    const __default = self::GRAY;
-
     case GRAY = "gray";
     case ROSE = "rose";
     case RED = "red";

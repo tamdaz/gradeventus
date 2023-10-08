@@ -10,10 +10,18 @@
             {{ component('CourseComponent', {
                 id: course.id,
                 name: course.name,
+                room: course.room,
                 average: course.average,
                 professor: course.professor,
                 color: course.backgroundColor
             }) }}
+        {% else %}
+            <div class="flex flex-col text-center col-span-2 mt-4">
+                <h2>Pas de cours crées</h2>
+                <p>
+                    Cliquez sur le bouton "Créer un cours" pour ajouter un cours.
+                </p>
+            </div>
         {% endfor %}
     </div>
     {{ knp_pagination_render(courses) }}

@@ -18,7 +18,8 @@ class Course implements JsonSerializable
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\Length(min: 1, max: 32)]
+    #[Assert\Length(min: 0, max: 32)]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -35,6 +36,9 @@ class Course implements JsonSerializable
 
     #[ORM\OneToMany(mappedBy: 'note_id', targetEntity: Note::class, orphanRemoval: true)]
     private Collection $notes;
+
+    #[ORM\Column(length: 15, nullable: true)]
+    private ?string $room = null;
 
     public function __construct()
     {
@@ -79,7 +83,8 @@ class Course implements JsonSerializable
     public function getBackgroundColor(): string
     {
         $color = $this->color->value;
-        return "bg-gradient-to-r from-$color-200 to-$color-50";
+
+        return "bg-gradient-to-r dark:from-$color-900 dark:to-$color-700 from-$color-200 to-$color-50";
     }
 
     public function setColor(CourseColor $color): static
@@ -145,10 +150,23 @@ class Course implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'room' => $this->room,
             'color' => $this->color,
             'professor' => $this->professor,
             'notes' => $this->getNotes()->getValues(),
             'avg' => $this->getAverage()
         ];
+    }
+
+    public function getRoom(): ?string
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?string $room): static
+    {
+        $this->room = $room;
+
+        return $this;
     }
 }

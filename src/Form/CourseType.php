@@ -17,6 +17,9 @@ class CourseType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom*"
             ])
+            ->add('room', TextType::class, [
+                'label' => 'Salle'
+            ])
             ->add('professor', TextType::class, [
                 'label' => "Professeur"
             ])
