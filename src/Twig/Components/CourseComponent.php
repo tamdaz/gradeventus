@@ -18,6 +18,11 @@ final class CourseComponent
     public string $name;
 
     /**
+     * @var string|null
+     */
+    public ?string $room;
+
+    /**
      * @var string
      */
     public string $color;
